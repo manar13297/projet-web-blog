@@ -1,15 +1,13 @@
 const {PrismaClient} = require('@prisma/client')
 const prisma = new PrismaClient()
 const faker = require('@faker-js/faker')
-import boolean from '@fakerjs/boolean';
-
 async function main() {
     await prisma.utilisateur.deleteMany()
     await prisma.categorie.deleteMany()
     await prisma.article.deleteMany()
     await prisma.article_categ.deleteMany()
     await prisma.commentaire.deleteMany()
-    
+
     for(let i=0 ; i<9 ; i++){
         await prisma.utilisateur.create({
             data:{
@@ -43,7 +41,10 @@ async function main() {
                 "image":faker.faker.image.business(1200,2300),
                 "createdAt":faker.faker.date(),
                 "updatedAt":faker.faker.date(),
-                "published":boolean(),
+                "published":faker.faker.datatype.number({
+                    'min':0,
+                    'max':1
+                }),
                 "id_user":faker.faker.datatype.number({
                     'min':2,
                     'max':10
