@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model article {
+  id            Int             @id @default(autoincrement())
+  titre         String          @db.Text
+  contenu       String          @db.Text
+  image         String          @db.VarChar(255)
+  createdAt     DateTime        @db.DateTime(0)
+  updatedAt     DateTime        @db.DateTime(0)
+  published     Boolean
+  id_user       Int
+  utilisateur   utilisateur     @relation(fields: [id_user], references: [id], onDelete: Cascade, map: "user_article_id")
+  article_categ article_categ[]
+  commentaire   commentaire[]
+
+  @@index([id_user], map: "user_article_id")
+}
+
+model article_categ {
+  id_article Int
+  id_categ   Int
+  article    article   @relation(fields: [id_article], references: [id], onDelete: Cascade, map: "article_id")
+  categorie  categorie @relation(fields: [id_categ], references: [id], onDelete: Cascade, map: "categ_id")
+
+  @@id([id_categ, id_article])
+  @@index([id_article], map: "article_id")
+}
+
+model categorie {
+  id            Int             @id @default(autoincrement())
+  nom           String          @db.VarChar(255)
+  article_categ article_categ[]
+}
+
+model commentaire {
+  id         Int     @id @default(autoincrement())
+  email      String  @db.VarChar(100)
+  contenu    String  @db.Text
+  id_article Int
+  article    article @relation(fields: [id_article], references: [id], onDelete: Cascade, map: "comment_article_id")
+
+  @@index([id_article], map: "comment_article_id")
+}
+
+model utilisateur {
+  id       Int              @id @default(autoincrement())
+  nom      String           @db.VarChar(100)
+  email    String           @db.VarChar(100)
+  password String           @db.VarChar(100)
+  role     utilisateur_role
+  article  article[]
+}
+
+enum utilisateur_role {
+  ADMIN
+  AUTHOR
+}
