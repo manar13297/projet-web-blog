@@ -14,6 +14,12 @@
     ![modele des chemins](./public/images/CRUD.JPG)
     - REST CLIENT
         - Nous pouvons utiliser l'extension de visual studio code **REST CLIENT** pour tester nos requetes HTTP directement.
+    - L'ORM Prisma
+        - Prisma est un ORM de nouvelle génération et open source pour Node.js.Il se compose des outils suivants:
+
+            - Prisma Client : client de base de données généré automatiquement et de type sécurisé
+            - Prisma Migrate : modélisation déclarative des données et migrations personnalisables
+            - Prisma Studio : interface utilisateur moderne pour afficher et modifier les données 
 
 
 

@@ -1,49 +1,11 @@
 var express = require('express');
 var router = express.Router();
-const categ = [
-  {
-    "id": 1,
-    "name": "categ 1"
-  },
-  {
-    "id": 2,
-    "name": "categ 2"
-  },
-  {
-    "id": 3,
-    "name": "categ 3"
-  },
-  {
-    "id": 4,
-    "name": "categ 4"
-  },
-  {
-    "id": 5,
-    "name": "categ 5"
-  },
-  {
-    "id": 6,
-    "name": "categ 6"
-  },
-  {
-    "id": 7,
-    "name": "categ 7"
-  },
-  {
-    "id": 8,
-    "name": "categ 8"
-  },
-  {
-    "id": 9,
-    "name": "categ 9"
-  },
-  {
-    "id": 10,
-    "name": "categ 10"
-  },
-  
-];
-router.get('/', function(req, res) {
+
+const {PrismaClient} = require('@prisma/client')
+const prisma = new PrismaClient()
+
+router.get('/', async function(req, res) {
+  const categ = await prisma.categorie.findMany()
   let {skip , take} = req.query;
   skip = skip || 0
   take = take || 10
@@ -51,22 +13,33 @@ router.get('/', function(req, res) {
 res.send(c.splice(skip,take));
 });
 
-router.get('/:id', function(req, res) {
-  const categ = categ.find((c)=>c.id===parseInt(req.params.id));  
+router.get('/:id', async function(req, res) {
+  const categ =  await prisma.categorie.findUnique({
+    where:{id:req.params.id},
+  })
   const r = categ?categ:'Not Found'
   res.send(r);
   });
 
-router.post('/', function(req, res) {
-    res.send("post categ");
+router.post('/', async function(req, res) {
+    const categorie = await prisma.categorie.create({
+      data:req.body,
+    })
+    res.send(categorie);
 });
 
-router.patch('/', function(req, res) {
-    res.send("update categ");
+router.patch('/', async function(req, res) {
+  const categorie = await prisma.categorie.update({
+    where:{id:req.body.id},
+    data:req.body,
+  })
+    res.send(categorie);
 });
 
-router.delete('/:id', function(req, res) {
-  res.send("supprimer categorie "+req.params.id);
+router.delete('/:id', async function(req, res) {
+  const categorie = await prisma.categorie.delete({
+    where:{id:parseInt(req.params.id)},
+  })
+  res.send(categorie);
 });
-
 module.exports = router;

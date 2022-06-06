@@ -1,9 +1,10 @@
 get http://localhost:4500/users/
 ###
-get http://localhost:4500/users?skip=3&take=3
+get http://localhost:4500/users?skip=0&take=1
 ###
-post http://localhost:4500/users
+post http://localhost:4500/users/
 ###
 patch http://localhost:4500/users/
+
 ###
-delete http://localhost:4500/users/10
+delete http://localhost:4500/users/3
