@@ -37,10 +37,10 @@ async function main() {
         await prisma.article.create({
             data:{
                 "titre":faker.faker.random.words(10),
-                "contenu":faker.faker.lorem(),
+                "contenu":faker.faker.lorem,
                 "image":faker.faker.image.business(1200,2300),
-                "createdAt":faker.faker.date(),
-                "updatedAt":faker.faker.date(),
+                "createdAt":faker.faker.date,
+                "updatedAt":faker.faker.date,
                 "published":faker.faker.datatype.number({
                     'min':0,
                     'max':1
@@ -74,7 +74,7 @@ async function main() {
         await prisma.commentaire.create({
             data:{
                 "email":faker.faker.internet.email(),
-                "contenu":faker.faker.random.lorem(),
+                "contenu":faker.faker.random.lorem,
                 "id_article":{i}
             },
         })
