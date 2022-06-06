@@ -1,0 +1,9 @@
+get http://localhost:4500/categories/
+###
+get http://localhost:4500/categories?skip=3&take=3
+###
+post http://localhost:4500/categories
+###
+patch http://localhost:4500/categories/
+###
+delete http://localhost:4500/categories/10

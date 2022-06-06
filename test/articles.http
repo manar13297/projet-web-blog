@@ -1,0 +1,9 @@
+get http://localhost:4500/articles/
+###
+get http://localhost:4500/articles?skip=2&take=3
+###
+post http://localhost:4500/articles
+###
+patch http://localhost:4500/articles/
+###
+delete http://localhost:4500/articles/1
