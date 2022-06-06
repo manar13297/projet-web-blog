@@ -20,6 +20,9 @@
             - Prisma Client : client de base de données généré automatiquement et de type sécurisé
             - Prisma Migrate : modélisation déclarative des données et migrations personnalisables
             - Prisma Studio : interface utilisateur moderne pour afficher et modifier les données 
+    - Faker
+        - Faker est une bibliothèque populaire qui génère de fausses données qui peuvent être utilisées  dans les tests.
+        - pour l’installer nous exécutons la commande `npm i @faker-js/faker`
 
 
 
