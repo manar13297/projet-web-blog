@@ -8,7 +8,7 @@ datasource db {
 }
 
 model article {
-  id            Int             @id @default(autoincrement())
+  id            Int             @id
   titre         String          @db.Text
   contenu       String          @db.Text
   image         String          @db.VarChar(255)
@@ -34,13 +34,13 @@ model article_categ {
 }
 
 model categorie {
-  id            Int             @id @default(autoincrement())
+  id            Int             @id 
   nom           String          @db.VarChar(255)
   article_categ article_categ[]
 }
 
 model commentaire {
-  id         Int     @id @default(autoincrement())
+  id         Int     @id 
   email      String  @db.VarChar(100)
   contenu    String  @db.Text
   id_article Int
@@ -50,7 +50,7 @@ model commentaire {
 }
 
 model utilisateur {
-  id       Int              @id @default(autoincrement())
+  id       Int              @id 
   nom      String           @db.VarChar(100)
   email    String           @db.VarChar(100)
   password String           @db.VarChar(100)
