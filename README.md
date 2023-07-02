@@ -1,4 +1,4 @@
-# projet de fin d module
+# projet de fin de module
 =======
 
 ##  Developpement d'un blog
